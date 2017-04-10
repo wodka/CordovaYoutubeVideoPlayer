@@ -21,7 +21,7 @@ public class YoutubeVideoPlayer extends CordovaPlugin {
 
 	@Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		
+
 		if(action.equals("openVideo")) {
 			String url = args.getString(0);
         	this.openVideo(url);
@@ -54,16 +54,12 @@ public class YoutubeVideoPlayer extends CordovaPlugin {
 			if(version.startsWith("11.16") && YouTubeIntents.canResolvePlayVideoIntent(cordovaContext)) {
 				intent = YouTubeIntents.createPlayVideoIntent(cordovaContext, videoId);
 			} else {
-				if(YouTubeIntents.canResolvePlayVideoIntentWithOptions(cordovaContext)){
-					intent = YouTubeIntents.createPlayVideoIntentWithOptions(cordovaContext, videoId, true, true);
-				} else {
-					intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + videoId), cordovaContext, YouTubeActivity.class);
-					intent.putExtra("videoId", videoId);
-	                ConfigXmlParser parser = new ConfigXmlParser();
-	                parser.parse(cordovaContext);
-	                CordovaPreferences prefs = parser.getPreferences();
-	                intent.putExtra("YouTubeApiId", prefs.getString("YouTubeDataApiKey","YOUTUBE_API_KEY"));
-				}
+				intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + videoId), cordovaContext, YouTubeActivity.class);
+				intent.putExtra("videoId", videoId);
+                ConfigXmlParser parser = new ConfigXmlParser();
+                parser.parse(cordovaContext);
+                CordovaPreferences prefs = parser.getPreferences();
+                intent.putExtra("YouTubeApiId", prefs.getString("YouTubeDataApiKey","YOUTUBE_API_KEY"));
 			}
 			return intent;
 		}

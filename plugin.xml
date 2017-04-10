@@ -31,7 +31,7 @@
             </config-file>
 
             <config-file target="AndroidManifest.xml" parent="/manifest/application">
-                <activity android:name="com.keyes.youtube.OpenYouTubePlayerActivity" android:screenOrientation="landscape"/>
+                <activity android:name="com.keyes.youtube.OpenYouTubePlayerActivity"/>
                 <activity
                     android:name="com.bunkerpalace.cordova.YouTubeActivity"
                     android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"

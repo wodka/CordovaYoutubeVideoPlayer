@@ -33,7 +33,8 @@ public class YouTubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     @Override
     public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
         if (!wasRestored) {
-            player.loadVideo(videoId);
+            player.loadVideo(videoId
+            player.setFullscreenControlFlags(2);
             player.setPlayerStateChangeListener(this);
         }
     }
